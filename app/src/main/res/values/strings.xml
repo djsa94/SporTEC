@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SporTEC</string>
+    <!-- Strings FB login -->
+    <string name="facebook_app_id">435874526835129</string>
+    <string name="fb_login_protocol_scheme">fb435874526835129</string>
+
 </resources>

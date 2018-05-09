@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorBlanco</item>
+        <item name="android:windowBackground">@color/colorBlanco</item>
     </style>
     <!-- Tema para crear splash screen. -->
     <style name="AppTheme.Launcher">
