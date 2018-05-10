@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.daniel.sportec.Objetos.Noticia;
 import com.example.daniel.sportec.R;
+import com.google.gson.Gson;
 
 public class NoticiaDetalleFragment extends Fragment {
 
@@ -29,10 +30,9 @@ public class NoticiaDetalleFragment extends Fragment {
         TextView contenido = (TextView) view.findViewById(R.id.noticias_detalle_contenido);
         TextView fecha = (TextView) view.findViewById(R.id.noticias_detalle_fecha);
 
-        Noticia noticia = new Noticia();
-        noticia.setContenido(getArguments().getString("Contenido"));
-        noticia.setFecha(getArguments().getString("Fecha"));
-        noticia.setTitulo(getArguments().getString("Titulo"));
+        Gson gson = new Gson();
+
+        Noticia noticia = gson.fromJson(getArguments().getString("noticia"), Noticia.class);
         titulo.setText(noticia.getTitulo());
         contenido.setText(noticia.getContenido());
         fecha.setText(noticia.getFecha());

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,36 +8,45 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum = "4">
+        android:weightSum = "4"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <LinearLayout
                 android:id="@+id/noticias_feed_layout_featured"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:weightSum="10"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                >
                 <ImageView
                     android:id="@+id/noticias_feed_layout_featured_image_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="7"
-                    app:srcCompat="@drawable/sportec_logo"/>
+                    app:srcCompat="@drawable/sportec_logo"
+                    android:gravity="center_horizontal"
+                    />
                 <TextView
                     android:id="@+id/noticias_feed_layout_featured_titulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:layout_weight="2"/>
+                    android:layout_weight="2"
+                    android:textSize="@dimen/noticia_featured_titulo"
+                    android:gravity="center_horizontal"/>
                 <TextView
                     android:id="@+id/noticias_feed_layout_featured_fecha"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:textSize="@dimen/noticia_featured_fecha"
+                    android:gravity="center_horizontal"/>
 
             </LinearLayout>
 
@@ -45,7 +54,7 @@
             <ListView
                 android:id="@+id/noticias_feed_layout_list_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
             </ListView>
         </LinearLayout>
@@ -53,4 +62,4 @@
     </android.support.v4.widget.NestedScrollView>
 
 
-</FrameLayout>
+</android.support.constraint.ConstraintLayout>

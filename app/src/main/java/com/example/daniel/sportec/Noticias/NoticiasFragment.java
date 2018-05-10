@@ -41,6 +41,24 @@ public class NoticiasFragment extends Fragment  {
 
         TypeToken<ArrayList<Noticia>> token = new TypeToken<ArrayList<Noticia>>() {};
         lista = gson.fromJson(getArguments().getString("Noticias"), token.getType());
+//        lista = new ArrayList<Noticia>();
+//        Noticia noticia1 = new Noticia();
+//        noticia1.setTitulo("titulo1");
+//        noticia1.setFecha("fecha1");
+//        noticia1.setContenido("contenido1");
+//
+//        Noticia noticia2 = new Noticia();
+//        noticia2.setTitulo("titulo2");
+//        noticia2.setFecha("fecha2");
+//        noticia2.setContenido("contenido2");
+//
+//        Noticia noticia3 = new Noticia();
+//        noticia3.setTitulo("titulo3");
+//        noticia3.setFecha("fecha3");
+//        noticia3.setContenido("contenido3");
+//        lista.add(noticia1);
+//        lista.add(noticia2);
+//        lista.add(noticia3);
         //Log.e("Post", lista.get(0).getTitulo());
 
 
@@ -48,6 +66,10 @@ public class NoticiasFragment extends Fragment  {
         TextView titulo = (TextView) view.findViewById((R.id.noticias_feed_layout_featured_titulo));
 
         TextView fecha = (TextView) view.findViewById(R.id.noticias_feed_layout_featured_fecha);
+
+        final Noticia noticia = lista.get(0);
+        titulo.setText(noticia.getTitulo());;
+        fecha.setText(noticia.getFecha());
 
         LinearLayout layoutFeatured = (LinearLayout) view.findViewById(R.id.noticias_feed_layout_featured);
         layoutFeatured.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +80,9 @@ public class NoticiasFragment extends Fragment  {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
                 fragmento = new NoticiaDetalleFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("noticia", gson.toJson(noticia));
+                fragmento.setArguments(bundle);
                 fragmentTransaction.replace(R.id.main_page, fragmento);
                 fragmentTransaction.addToBackStack(null);
 
@@ -66,12 +91,7 @@ public class NoticiasFragment extends Fragment  {
         });
 
 
-//        Noticia noticia = lista.get(0);
-//        noticia.setContenido(getArguments().getString("Contenido"));
-//        noticia.setFecha(getArguments().getString("Fecha"));
-//        noticia.setTitulo(getArguments().getString("Titulo"));
-//        titulo.setText(noticia.getTitulo());;
-//        fecha.setText(noticia.getFecha());
+
 
 
         NoticiasAdapter adapter = new NoticiasAdapter(getActivity(), lista);

@@ -32,7 +32,7 @@ public class NoticiasAdapter extends ArrayAdapter<Noticia>{
         super(context, 0, noticias);
         this.contexto = context;
         mInflater = LayoutInflater.from(contexto);
-        Log.e("Probando lista", gson.toJson(noticias));
+        Log.e("Probando lista", String.valueOf(noticias.size()));
     }
 
 
@@ -45,7 +45,7 @@ public class NoticiasAdapter extends ArrayAdapter<Noticia>{
         }
 
         final Noticia noticia = getItem(position);
-        Log.e("Probando single", gson.toJson(noticia));
+        Log.e("Probando single", String.valueOf(position));
         String titulo = noticia.getTitulo();
         TextView textView = (TextView) convertView.findViewById(R.id.noticias_feed_layout_regular_titulo);
         textView.setText(titulo.subSequence(0,titulo.length()));
