@@ -1,6 +1,6 @@
 package com.example.daniel.sportec.Noticias;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.example.daniel.sportec.Objetos.Noticia;
 import com.example.daniel.sportec.R;
 
-public class NoticiaDetalleFragment extends android.support.v4.app.Fragment {
+public class NoticiaDetalleFragment extends Fragment {
 
 
     public static NoticiaDetalleFragment newInstance() {

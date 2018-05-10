@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +18,15 @@ import android.widget.TextView;
 import com.example.daniel.sportec.BaseDatos.BaseDatos;
 import com.example.daniel.sportec.Objetos.Noticia;
 import com.example.daniel.sportec.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class NoticiasFragment extends android.support.v4.app.Fragment  {
-    BaseDatos db = new BaseDatos();
-
-
+public class NoticiasFragment extends Fragment  {
+    ArrayList<Noticia> lista;
+    Gson gson = new Gson();
 
     public static NoticiasFragment newInstance() {
         NoticiasFragment fragmentoNoticias = new NoticiasFragment();
@@ -35,6 +38,10 @@ public class NoticiasFragment extends android.support.v4.app.Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.noticias_feed_layout, container, false);
+
+        TypeToken<ArrayList<Noticia>> token = new TypeToken<ArrayList<Noticia>>() {};
+        lista = gson.fromJson(getArguments().getString("Noticias"), token.getType());
+        //Log.e("Post", lista.get(0).getTitulo());
 
 
         ImageView imagen = (ImageView) view.findViewById(R.id.noticias_feed_layout_featured_image_view);
@@ -57,17 +64,17 @@ public class NoticiasFragment extends android.support.v4.app.Fragment  {
                 fragmentTransaction.commit();
             }
         });
-        ArrayList<Noticia> lista = db.getNoticias("rugby");
 
-        Noticia noticia = lista.get(0);
-        noticia.setContenido(getArguments().getString("Contenido"));
-        noticia.setFecha(getArguments().getString("Fecha"));
-        noticia.setTitulo(getArguments().getString("Titulo"));
-        titulo.setText(noticia.getTitulo());;
-        fecha.setText(noticia.getFecha());
 
-        db.getNoticias("rugby").remove(0);
-        NoticiasAdapter adapter = new NoticiasAdapter(getActivity(), db.getNoticias("rugby"));
+//        Noticia noticia = lista.get(0);
+//        noticia.setContenido(getArguments().getString("Contenido"));
+//        noticia.setFecha(getArguments().getString("Fecha"));
+//        noticia.setTitulo(getArguments().getString("Titulo"));
+//        titulo.setText(noticia.getTitulo());;
+//        fecha.setText(noticia.getFecha());
+
+
+        NoticiasAdapter adapter = new NoticiasAdapter(getActivity(), lista);
         ListView list = (ListView) view.findViewById(R.id.noticias_feed_layout_list_view);
         list.setAdapter(adapter);
 

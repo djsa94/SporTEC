@@ -2,7 +2,6 @@ package com.example.daniel.sportec.NavigationMenu;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
 
+import com.example.daniel.sportec.BaseDatos.BaseDatos;
 import com.example.daniel.sportec.Noticias.NoticiasFragment;
 import com.example.daniel.sportec.R;
 
@@ -72,11 +72,13 @@ public class NavigationMenu extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        BaseDatos db = new BaseDatos();
 
-        FragmentManager fm = getSupportFragmentManager();
+
 
         if (id == R.id.activity_menu_slice_drawer_noticias) {
-            fm.beginTransaction().replace(R.id.main_page, new NoticiasFragment()).commit();
+            db.getNoticias("rugby", getSupportFragmentManager());
+
         }
 
         else if (id == R.id.menu_slice_drawer_login) {

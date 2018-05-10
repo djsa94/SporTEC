@@ -7,9 +7,9 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <!-- Tamano textos de noticia -->
-    <dimen name="noticia_detalle_titulo">18sp</dimen>
-    <dimen name="noticia_detalle_contenido">18sp</dimen>
-    <dimen name="noticia_detalle_fecha">18sp</dimen>
+    <dimen name="noticia_detalle_titulo">24sp</dimen>
+    <dimen name="noticia_detalle_contenido">12sp</dimen>
+    <dimen name="noticia_detalle_fecha">10sp</dimen>
 
 
 </resources>
