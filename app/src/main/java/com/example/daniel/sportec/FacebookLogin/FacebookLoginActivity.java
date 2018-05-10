@@ -1,4 +1,5 @@
 package com.example.daniel.sportec.FacebookLogin;
+import com.example.daniel.sportec.NavigationMenu.NavigationMenu;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -117,9 +118,9 @@ public class FacebookLoginActivity extends AppCompatActivity{
 
 
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(FacebookLoginActivity.this, user.getEmail(),
-                                    Toast.LENGTH_SHORT).show();
-                            //updateUI(user);
+                            Intent myIntent = new Intent(getApplicationContext(), NavigationMenu.class);
+                            getApplicationContext().startActivity(myIntent);
+
                         } else {
                             // If sign in fails, display a message to the user.
 
@@ -140,16 +141,15 @@ public class FacebookLoginActivity extends AppCompatActivity{
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Toast.makeText(FacebookLoginActivity.this, "Firebase logged",
+            Toast.makeText(FacebookLoginActivity.this, "Bienvenido" + currentUser.getDisplayName(),
                     Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, NavigationMenu.class);
+            startActivity(intent);
         }
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken == null;
 
-        if(isLoggedIn){
-            Toast.makeText(FacebookLoginActivity.this, "FB logged.",
-                    Toast.LENGTH_SHORT).show();
-        }
+
         //updateUI(currentUser);
     }
 

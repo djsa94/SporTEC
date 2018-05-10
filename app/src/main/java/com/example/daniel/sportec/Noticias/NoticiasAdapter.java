@@ -63,9 +63,7 @@ public class NoticiasAdapter extends ArrayAdapter<Noticia>{
                 fragmento = new NoticiaDetalleFragment();
 
                 Bundle arguments = new Bundle();
-                arguments.putString( "Titulo" , noticia.getTitulo());
-                arguments.putString("Contenido", noticia.getContenido());
-                arguments.putString("Fecha", noticia.getFecha());
+                arguments.putString( "noticia" , gson.toJson(noticia));
                 fragmento.setArguments(arguments);
 
                 fragmentTransaction.replace(R.id.main_page, fragmento);
@@ -77,26 +75,6 @@ public class NoticiasAdapter extends ArrayAdapter<Noticia>{
 
 
 
-//        textView.setOnClickListener(new TextView.OnClickListener() {
-//            @Override
-//            public void onClick(View convertView) {
-////                Fragment fragmento;
-////                FragmentManager fragmentManager = ((AppCompatActivity)contexto).getSupportFragmentManager();
-////                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-////
-////                fragmento = new administracion_editar_voluntario_Fragment();
-////
-////                Bundle arguments = new Bundle();
-////                fragmento.setArguments(arguments);
-////
-////
-////                fragmentTransaction.replace(R.id.main_page, fragmento);
-////                fragmentTransaction.addToBackStack(null);
-////
-////                fragmentTransaction.commit();
-//
-//            }
-//        });
 
         return convertView;
     }

@@ -15,6 +15,7 @@
 
     <!-- menu slide -->
     <string name="cerrar_session_menu_slice">Salir</string>
-    <string name="login">Iniciar sesión</string>
+    <string name="login">Cerrar sesion</string>
+    <string name="username">USERNAME</string>
 
 </resources>

@@ -2,6 +2,7 @@ package com.example.daniel.sportec.Noticias;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ public class NoticiaDetalleFragment extends Fragment {
         Gson gson = new Gson();
 
         Noticia noticia = gson.fromJson(getArguments().getString("noticia"), Noticia.class);
+        Log.e("ANTES ERROR", getArguments().getString("noticia"));
         titulo.setText(noticia.getTitulo());
         contenido.setText(noticia.getContenido());
         fecha.setText(noticia.getFecha());

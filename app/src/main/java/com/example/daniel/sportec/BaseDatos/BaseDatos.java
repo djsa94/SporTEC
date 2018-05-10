@@ -10,6 +10,7 @@ import android.util.Log;
 import com.example.daniel.sportec.Noticias.NoticiasFragment;
 import com.example.daniel.sportec.Objetos.Noticia;
 import com.example.daniel.sportec.R;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,32 +29,88 @@ public class BaseDatos {
     public BaseDatos() {
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
-    public void getNoticias(String deporte, FragmentManager fragmentManager){
-
-        final ArrayList<Noticia> noticias = new ArrayList<Noticia>();
+    public void getNoticias(FragmentManager fragmentManager, ArrayList<String> deportesIn, ArrayList<Noticia> noticiasIn){
+        final ArrayList<String> deportes = deportesIn;
+        final ArrayList<Noticia> noticias = noticiasIn;
 
         final FragmentManager fm = fragmentManager;
-        mDatabase.child("Deportes").child(deporte).child("Noticias").addValueEventListener(new ValueEventListener() {
+
+        if(deportes.isEmpty()){
+            Gson gson = new Gson();
+            Bundle bundle = new Bundle();
+            bundle.putString("Noticias", gson.toJson(noticias));
+            Fragment fragmentoNuevo = new NoticiasFragment();
+            fragmentoNuevo.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.main_page, fragmentoNuevo).commit();
+        }else{
+            mDatabase.child("Deportes").child(deportes.get(0)).child("Noticias").addValueEventListener(new ValueEventListener() {
+
+
+
+                @Override
+                public void onDataChange(DataSnapshot snapshot) {
+
+
+
+
+
+                    for (DataSnapshot noticiaSnapshot: snapshot.getChildren()) {
+
+                        Noticia noticia = noticiaSnapshot.getValue(Noticia.class);
+                        noticias.add(noticia);
+                        Log.e("Post", noticia.getTitulo());
+                        Log.e("Post", noticia.getContenido());
+                        Log.e("Post", noticia.getFecha());
+                    }
+                    deportes.remove(0);
+                    getNoticias(fm, deportes, noticias);
+
+
+
+                }
+                @Override
+                public void onCancelled(DatabaseError firebaseError) {
+                    //Log.e("The read failed: " ,firebaseError.getMessage());
+                }
+
+
+
+            });
+        }
+
+
+    }
+
+
+    public void getPreferencias(final FragmentManager fragmentManager, FirebaseUser user ){
+
+
+        final FragmentManager fm = fragmentManager;
+        final ArrayList<String> deportes = new ArrayList<String>();
+        mDatabase.child("Preferencias").child(user.getUid()).addValueEventListener(new ValueEventListener() {
 
 
 
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 Gson gson = new Gson();
-                for (DataSnapshot noticiaSnapshot: snapshot.getChildren()) {
 
-                Noticia noticia = noticiaSnapshot.getValue(Noticia.class);
-                noticias.add(noticia);
-                    Log.e("Post", noticia.getTitulo());
-                    Log.e("Post", noticia.getContenido());
-                    Log.e("Post", noticia.getFecha());
-                }
 
-                Bundle bundle = new Bundle();
-                bundle.putString("Noticias", gson.toJson(noticias));
-                Fragment fragmentoNuevo = new NoticiasFragment();
-                fragmentoNuevo.setArguments(bundle);
-                fm.beginTransaction().replace(R.id.main_page, fragmentoNuevo).commit();
+
+
+
+
+                    for (DataSnapshot noticiaSnapshot: snapshot.getChildren()) {
+
+                        deportes.add(noticiaSnapshot.getValue(String.class));
+
+                        Log.e("Post",noticiaSnapshot.getValue(String.class));
+
+                    }
+                    getNoticias(fragmentManager, deportes, new ArrayList<Noticia>());
+
+
+
 
             }
             @Override

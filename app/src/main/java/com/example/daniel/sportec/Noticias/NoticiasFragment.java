@@ -41,25 +41,7 @@ public class NoticiasFragment extends Fragment  {
 
         TypeToken<ArrayList<Noticia>> token = new TypeToken<ArrayList<Noticia>>() {};
         lista = gson.fromJson(getArguments().getString("Noticias"), token.getType());
-//        lista = new ArrayList<Noticia>();
-//        Noticia noticia1 = new Noticia();
-//        noticia1.setTitulo("titulo1");
-//        noticia1.setFecha("fecha1");
-//        noticia1.setContenido("contenido1");
-//
-//        Noticia noticia2 = new Noticia();
-//        noticia2.setTitulo("titulo2");
-//        noticia2.setFecha("fecha2");
-//        noticia2.setContenido("contenido2");
-//
-//        Noticia noticia3 = new Noticia();
-//        noticia3.setTitulo("titulo3");
-//        noticia3.setFecha("fecha3");
-//        noticia3.setContenido("contenido3");
-//        lista.add(noticia1);
-//        lista.add(noticia2);
-//        lista.add(noticia3);
-        //Log.e("Post", lista.get(0).getTitulo());
+
 
 
         ImageView imagen = (ImageView) view.findViewById(R.id.noticias_feed_layout_featured_image_view);
@@ -93,7 +75,7 @@ public class NoticiasFragment extends Fragment  {
 
 
 
-
+        lista.remove(0);
         NoticiasAdapter adapter = new NoticiasAdapter(getActivity(), lista);
         ListView list = (ListView) view.findViewById(R.id.noticias_feed_layout_list_view);
         list.setAdapter(adapter);

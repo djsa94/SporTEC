@@ -18,13 +18,14 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/sportec_logo" />
 
     <TextView
+        android:id="@+id/menu_slice_nav_header_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="USER NAME"
+        android:text="@string/username"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>

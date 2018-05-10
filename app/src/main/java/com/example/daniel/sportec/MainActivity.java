@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.example.daniel.sportec.BaseDatos.BaseDatos;
 import com.example.daniel.sportec.FacebookLogin.FacebookLoginActivity;
 import com.example.daniel.sportec.NavigationMenu.NavigationMenu;
+import com.facebook.login.LoginManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,8 +17,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTheme(R.style.AppTheme);
+        //LoginManager.getInstance().logOut();
 
-        Intent intent = new Intent(this, NavigationMenu.class);
+        Intent intent = new Intent(this, FacebookLoginActivity.class);
         startActivity(intent);
     }
 }

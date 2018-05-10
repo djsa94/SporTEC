@@ -1,5 +1,6 @@
 package com.example.daniel.sportec.NavigationMenu;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -10,18 +11,30 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.daniel.sportec.BaseDatos.BaseDatos;
+import com.example.daniel.sportec.FacebookLogin.FacebookLoginActivity;
 import com.example.daniel.sportec.Noticias.NoticiasFragment;
+import com.example.daniel.sportec.Objetos.Noticia;
 import com.example.daniel.sportec.R;
+import com.facebook.login.LoginManager;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
 
 public class NavigationMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    BaseDatos db = new BaseDatos();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_slice_activity);
         setTheme(R.style.AppTheme);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -32,7 +45,15 @@ public class NavigationMenu extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View hView =  navigationView.getHeaderView(0);
+        TextView username = (TextView) hView.findViewById(R.id.menu_slice_nav_header_user);
+        username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+
         navigationView.setNavigationItemSelectedListener(this);
+
+        ;
+
+        db.getPreferencias(getSupportFragmentManager(), FirebaseAuth.getInstance().getCurrentUser());
     }
 
     @Override
@@ -72,18 +93,23 @@ public class NavigationMenu extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        BaseDatos db = new BaseDatos();
+
 
 
 
         if (id == R.id.activity_menu_slice_drawer_noticias) {
-            db.getNoticias("rugby", getSupportFragmentManager());
+            //db.getNoticias(getSupportFragmentManager(), new ArrayList<String>(), new ArrayList<Noticia>());
+            db.getPreferencias(getSupportFragmentManager(), FirebaseAuth.getInstance().getCurrentUser());
 
         }
 
         else if (id == R.id.menu_slice_drawer_login) {
-            //Intent myIntent = new Intent(menu_slice_Activity.this, customLogActivity.class);
-            //menu_slice_Activity.this.startActivity(myIntent);
+            FirebaseAuth.getInstance().signOut();
+            LoginManager.getInstance().logOut();
+            Toast.makeText(NavigationMenu.this, "Sesion Cerrada",
+                    Toast.LENGTH_SHORT).show();
+            Intent myIntent = new Intent(getApplicationContext(), FacebookLoginActivity.class);
+            getApplicationContext().startActivity(myIntent);
         }
 
 //        else if(id == R.id.administrar_voluntarios_ibtn_buscar_voluntarios) {
