@@ -12,10 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.example.daniel.sportec.BaseDatos.BaseDatos;
 import com.example.daniel.sportec.Objetos.Noticia;
 import com.example.daniel.sportec.R;
 import com.google.gson.Gson;
@@ -51,6 +53,9 @@ public class NoticiasAdapter extends ArrayAdapter<Noticia>{
         textView.setText(titulo.subSequence(0,titulo.length()));
         TextView textViewfecha = (TextView) convertView.findViewById(R.id.noticias_feed_layout_regular_fecha);
         textViewfecha.setText(noticia.getFecha().subSequence(0,noticia.getFecha().length()));
+//        ImageView imagen = (ImageView) convertView.findViewById(R.id.noticias_detalle_imagen);
+//        BaseDatos db = new BaseDatos();
+//        db.getImagen(noticia.getImagen(), imagen);
 
 
         convertView.setOnClickListener(new View.OnClickListener() {

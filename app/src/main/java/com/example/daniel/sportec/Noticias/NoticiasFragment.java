@@ -27,6 +27,7 @@ import java.util.List;
 public class NoticiasFragment extends Fragment  {
     ArrayList<Noticia> lista;
     Gson gson = new Gson();
+    BaseDatos db = new BaseDatos();
 
     public static NoticiasFragment newInstance() {
         NoticiasFragment fragmentoNoticias = new NoticiasFragment();
@@ -73,7 +74,7 @@ public class NoticiasFragment extends Fragment  {
         });
 
 
-
+        db.getImagen(noticia.getImagen(), imagen);
 
         lista.remove(0);
         NoticiasAdapter adapter = new NoticiasAdapter(getActivity(), lista);

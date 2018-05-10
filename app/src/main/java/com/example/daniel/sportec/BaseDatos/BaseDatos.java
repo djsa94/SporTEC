@@ -1,15 +1,21 @@
 package com.example.daniel.sportec.BaseDatos;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.example.daniel.sportec.Noticias.NoticiasFragment;
 import com.example.daniel.sportec.Objetos.Noticia;
 import com.example.daniel.sportec.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -25,9 +33,33 @@ import java.util.List;
 public class BaseDatos {
 
     private DatabaseReference mDatabase;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
 
     public BaseDatos() {
         mDatabase = FirebaseDatabase.getInstance().getReference();
+    }
+
+    public void getImagen(String id, ImageView view){
+        StorageReference storageRef = storage.getReference();
+        final ImageView view1 = view;
+        Log.e("ENTRADA IMAGEN", id);
+        StorageReference imageRef = storageRef.child(id);
+
+        final long ONE_MEGABYTE = 1024 * 1024;
+        imageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap bmp= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                view1.setImageBitmap(bmp);
+
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
     }
     public void getNoticias(FragmentManager fragmentManager, ArrayList<String> deportesIn, ArrayList<Noticia> noticiasIn){
         final ArrayList<String> deportes = deportesIn;
@@ -61,6 +93,7 @@ public class BaseDatos {
                         Log.e("Post", noticia.getTitulo());
                         Log.e("Post", noticia.getContenido());
                         Log.e("Post", noticia.getFecha());
+                        Log.e("Post", noticia.getImagen());
                     }
                     deportes.remove(0);
                     getNoticias(fm, deportes, noticias);

@@ -17,6 +17,8 @@
 
     <dimen name="altura_noticias">100dp</dimen>
 
+    <dimen name="tamano_imagenes_noticia_detalle">300dp</dimen>
+
 
 
 </resources>

@@ -9,12 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.daniel.sportec.BaseDatos.BaseDatos;
 import com.example.daniel.sportec.Objetos.Noticia;
 import com.example.daniel.sportec.R;
 import com.google.gson.Gson;
 
 public class NoticiaDetalleFragment extends Fragment {
-
+    BaseDatos db = new BaseDatos();
 
     public static NoticiaDetalleFragment newInstance() {
         NoticiaDetalleFragment fragmentoNoticia = new NoticiaDetalleFragment();
@@ -38,6 +39,7 @@ public class NoticiaDetalleFragment extends Fragment {
         titulo.setText(noticia.getTitulo());
         contenido.setText(noticia.getContenido());
         fecha.setText(noticia.getFecha());
+        db.getImagen(noticia.getImagen(), imagen);
 
 
 
