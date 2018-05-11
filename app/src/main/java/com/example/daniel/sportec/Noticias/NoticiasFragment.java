@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.daniel.sportec.BaseDatos.BaseDatos;
@@ -54,7 +55,7 @@ public class NoticiasFragment extends Fragment  {
         titulo.setText(noticia.getTitulo());;
         fecha.setText(noticia.getFecha());
 
-        LinearLayout layoutFeatured = (LinearLayout) view.findViewById(R.id.noticias_feed_layout_featured);
+        RelativeLayout layoutFeatured = (RelativeLayout) view.findViewById(R.id.noticias_feed_layout_featured);
         layoutFeatured.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

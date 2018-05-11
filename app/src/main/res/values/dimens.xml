@@ -15,8 +15,13 @@
     <dimen name="noticia_featured_titulo">30sp</dimen>
     <dimen name="noticia_featured_fecha">12sp</dimen>
 
-    <dimen name="altura_noticias">100dp</dimen>
+    <!-- Tamano textos de lista noticias -->
+    <dimen name="noticia_lista_titulo">20sp</dimen>
+    <dimen name="noticia_lista_fecha">8sp</dimen>
 
+    <!-- Tamanos imagenes -->
+    <dimen name="altura_noticias">100dp</dimen>
+    <dimen name="tamano_imagenes_noticia_featured">200dp</dimen>
     <dimen name="tamano_imagenes_noticia_detalle">300dp</dimen>
 
 

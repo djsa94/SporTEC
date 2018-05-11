@@ -61,13 +61,13 @@ public class BaseDatos {
             }
         });
     }
-    public void getNoticias(FragmentManager fragmentManager, ArrayList<String> deportesIn, ArrayList<Noticia> noticiasIn){
+    public void getNoticias(FragmentManager fragmentManager, ArrayList<String> deportesIn, ArrayList<Noticia> noticiasIn, int positionIn){
         final ArrayList<String> deportes = deportesIn;
         final ArrayList<Noticia> noticias = noticiasIn;
-
+        final int position = positionIn;
         final FragmentManager fm = fragmentManager;
 
-        if(deportes.isEmpty()){
+        if(position == deportes.size() ){
             Gson gson = new Gson();
             Bundle bundle = new Bundle();
             bundle.putString("Noticias", gson.toJson(noticias));
@@ -75,7 +75,7 @@ public class BaseDatos {
             fragmentoNuevo.setArguments(bundle);
             fm.beginTransaction().replace(R.id.main_page, fragmentoNuevo).commit();
         }else{
-            mDatabase.child("Deportes").child(deportes.get(0)).child("Noticias").addValueEventListener(new ValueEventListener() {
+            mDatabase.child("Deportes").child(deportes.get(position)).child("Noticias").addValueEventListener(new ValueEventListener() {
 
 
 
@@ -95,8 +95,8 @@ public class BaseDatos {
                         Log.e("Post", noticia.getFecha());
                         Log.e("Post", noticia.getImagen());
                     }
-                    deportes.remove(0);
-                    getNoticias(fm, deportes, noticias);
+
+                    getNoticias(fm, deportes, noticias, position+1);
 
 
 
@@ -140,7 +140,7 @@ public class BaseDatos {
                         Log.e("Post",noticiaSnapshot.getValue(String.class));
 
                     }
-                    getNoticias(fragmentManager, deportes, new ArrayList<Noticia>());
+                    getNoticias(fragmentManager, deportes, new ArrayList<Noticia>(), 0);
 
 
 

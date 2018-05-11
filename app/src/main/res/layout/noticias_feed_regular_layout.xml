@@ -11,29 +11,31 @@
         android:id="@+id/noticias_feed_layout_regular_titulo"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="4"
+        android:layout_weight="5"
         android:gravity="center_vertical"
 
         android:text=""
-        android:textSize="@dimen/noticia_detalle_titulo" />
+        android:textSize="@dimen/noticia_lista_titulo" />
     <TextView
         android:id="@+id/noticias_feed_layout_regular_fecha"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="3"
         android:gravity="center_vertical"
         android:text=""
-        android:textSize="@dimen/noticia_detalle_fecha" />
+        android:textSize="@dimen/noticia_lista_fecha" />
 
 
 
     <ImageView
         android:id="@+id/noticias_feed_layout_regular_image_view"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_weight="4"
+        android:layout_width="@dimen/altura_noticias"
+        android:layout_height="@dimen/altura_noticias"
+        android:layout_weight="2"
 
-        android:gravity="center_vertical"
+        android:layout_gravity="right"
+        android:gravity="right"
+
         app:srcCompat="@drawable/sportec_logo" />
 
 
