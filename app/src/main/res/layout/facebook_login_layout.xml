@@ -59,14 +59,17 @@
         android:text="Ingresar"
         app:layout_constraintEnd_toEndOf="@+id/facebook_login_text_view_password"
         app:layout_constraintStart_toStartOf="@+id/facebook_login_text_view_password"
-        app:layout_constraintTop_toBottomOf="@+id/facebook_login_text_view_password" />
+        app:layout_constraintTop_toBottomOf="@+id/facebook_login_text_view_password"
+        android:background="@color/colorPrimary"/>
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/sportec_logo"
-        tools:layout_editor_absoluteX="92dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:layout_marginLeft="92dp"
+        android:layout_marginStart="92dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sportec_logo" />
 
 </android.support.constraint.ConstraintLayout>

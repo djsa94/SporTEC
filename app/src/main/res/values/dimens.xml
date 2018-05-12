@@ -24,6 +24,8 @@
     <dimen name="tamano_imagenes_noticia_featured">200dp</dimen>
     <dimen name="tamano_imagenes_noticia_detalle">300dp</dimen>
 
+    <dimen name="tamano_texto_deporte">12sp</dimen>
+
 
 
 </resources>

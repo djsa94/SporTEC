@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/noticia_detalle_contenido"
                 android:textAlignment="center"
-                android:textColor="@color/colorNegro"/>
+            android:textColor="@color/colorNegro"/>
         </LinearLayout>
 
     </ScrollView>

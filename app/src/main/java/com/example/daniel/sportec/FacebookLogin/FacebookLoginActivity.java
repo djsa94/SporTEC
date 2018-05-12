@@ -15,6 +15,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.daniel.sportec.R;
@@ -60,32 +63,7 @@ public class FacebookLoginActivity extends AppCompatActivity{
             @Override
             public void onSuccess(LoginResult loginResult) {
                 handleFacebookAccessToken(loginResult.getAccessToken());
-//                GraphRequest request = GraphRequest.newMeRequest(
-//                        loginResult.getAccessToken(),
-//                        new GraphRequest.GraphJSONObjectCallback() {
-//                            @Override
-//                            public void onCompleted(
-//                                    JSONObject object,
-//                                    GraphResponse response) {
-//                                Log.v("LoginActivity Response ", response.toString());
-//
-//                                try {
-//                                    String Name = object.getString("name");
-//
-//                                    //FEmail = object.getString("email");
-//                                    //Log.v("Email = ", " " + FEmail);
-//                                    Toast.makeText(getApplicationContext(), "Name " + Name, Toast.LENGTH_LONG).show();
-//
-//
-//                                } catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-//                            }
-//                        });
-//                Bundle parameters = new Bundle();
-//                parameters.putString("fields", "id,name,email,gender, birthday");
-//                request.setParameters(parameters);
-//                request.executeAsync();
+
 
 
 
@@ -105,11 +83,46 @@ public class FacebookLoginActivity extends AppCompatActivity{
         });
 
 
+        Button botonIngresar = (Button) findViewById(R.id.facebook_login_button_log_in);
+        final TextView email = (TextView) findViewById(R.id.facebook_login_text_view_username);
+        final TextView pass = (TextView) findViewById(R.id.facebook_login_text_view_password);
+
+        botonIngresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                crearUserCorreo(String.valueOf(email.getText()), String.valueOf(pass.getText()));
+            }
+
+        });
+
+
+    }
+    private void crearUserCorreo(String user, String pass){
+        mAuth.createUserWithEmailAndPassword(user,pass)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            //User registered successfully
+                            Intent myIntent = new Intent(getApplicationContext(), NavigationMenu.class);
+                            getApplicationContext().startActivity(myIntent);
+                        }else{
+                            if(mAuth.getCurrentUser() != null){
+                                Intent myIntent = new Intent(getApplicationContext(), NavigationMenu.class);
+                                getApplicationContext().startActivity(myIntent);
+                            }else{
+                                Toast.makeText(FacebookLoginActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                });
     }
 
     private void handleFacebookAccessToken(AccessToken token) {
         //Autentica las credenciales en Firebase
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

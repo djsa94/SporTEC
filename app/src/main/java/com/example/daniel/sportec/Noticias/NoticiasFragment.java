@@ -15,10 +15,14 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.daniel.sportec.BaseDatos.BaseDatos;
+import com.example.daniel.sportec.Deportes.DeportesFragment;
+import com.example.daniel.sportec.FacebookLogin.FacebookLoginActivity;
 import com.example.daniel.sportec.Objetos.Noticia;
 import com.example.daniel.sportec.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -33,6 +37,7 @@ public class NoticiasFragment extends Fragment  {
     public static NoticiasFragment newInstance() {
         NoticiasFragment fragmentoNoticias = new NoticiasFragment();
 
+
         return fragmentoNoticias;
     }
 
@@ -45,42 +50,46 @@ public class NoticiasFragment extends Fragment  {
         lista = gson.fromJson(getArguments().getString("Noticias"), token.getType());
 
 
+        if(lista.isEmpty()){
+            db.getDeportes(getFragmentManager(), FirebaseAuth.getInstance().getCurrentUser());
+        }else {
+            ImageView imagen = (ImageView) view.findViewById(R.id.noticias_feed_layout_featured_image_view);
+            TextView titulo = (TextView) view.findViewById((R.id.noticias_feed_layout_featured_titulo));
 
-        ImageView imagen = (ImageView) view.findViewById(R.id.noticias_feed_layout_featured_image_view);
-        TextView titulo = (TextView) view.findViewById((R.id.noticias_feed_layout_featured_titulo));
+            TextView fecha = (TextView) view.findViewById(R.id.noticias_feed_layout_featured_fecha);
 
-        TextView fecha = (TextView) view.findViewById(R.id.noticias_feed_layout_featured_fecha);
+            final Noticia noticia = lista.get(0);
+            titulo.setText(noticia.getTitulo());
+            ;
+            fecha.setText(noticia.getFecha());
 
-        final Noticia noticia = lista.get(0);
-        titulo.setText(noticia.getTitulo());;
-        fecha.setText(noticia.getFecha());
+            RelativeLayout layoutFeatured = (RelativeLayout) view.findViewById(R.id.noticias_feed_layout_featured);
+            layoutFeatured.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Fragment fragmento;
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        RelativeLayout layoutFeatured = (RelativeLayout) view.findViewById(R.id.noticias_feed_layout_featured);
-        layoutFeatured.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment fragmento;
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmento = new NoticiaDetalleFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("noticia", gson.toJson(noticia));
+                    fragmento.setArguments(bundle);
+                    fragmentTransaction.replace(R.id.main_page, fragmento);
+                    fragmentTransaction.addToBackStack(null);
 
-                fragmento = new NoticiaDetalleFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("noticia", gson.toJson(noticia));
-                fragmento.setArguments(bundle);
-                fragmentTransaction.replace(R.id.main_page, fragmento);
-                fragmentTransaction.addToBackStack(null);
-
-                fragmentTransaction.commit();
-            }
-        });
+                    fragmentTransaction.commit();
+                }
+            });
 
 
-        db.getImagen(noticia.getImagen(), imagen);
+            db.getImagen(noticia.getImagen(), imagen);
 
-        lista.remove(0);
-        NoticiasAdapter adapter = new NoticiasAdapter(getActivity(), lista);
-        ListView list = (ListView) view.findViewById(R.id.noticias_feed_layout_list_view);
-        list.setAdapter(adapter);
+            lista.remove(0);
+            NoticiasAdapter adapter = new NoticiasAdapter(getActivity(), lista);
+            ListView list = (ListView) view.findViewById(R.id.noticias_feed_layout_list_view);
+            list.setAdapter(adapter);
+        }
 
 
 

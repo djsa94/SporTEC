@@ -7,15 +7,19 @@ import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.example.daniel.sportec.Deportes.DeportesFragment;
 import com.example.daniel.sportec.Noticias.NoticiasFragment;
+import com.example.daniel.sportec.Objetos.Deporte;
 import com.example.daniel.sportec.Objetos.Noticia;
 import com.example.daniel.sportec.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,11 +38,29 @@ public class BaseDatos {
 
     private DatabaseReference mDatabase;
     FirebaseStorage storage = FirebaseStorage.getInstance();
-
+    ArrayList<String> deportes;
     public BaseDatos() {
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        deportes = new ArrayList<String>();
     }
 
+
+    public void ingresarPreferencias(){
+
+    for(int i = 0; i<deportes.size(); i++) {
+
+        mDatabase.child("Preferencias").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Deporte" + String.valueOf(i)).setValue(deportes.get(i));
+    }
+
+
+
+
+    }
+    public void agregarPreferencias(Deporte deporte){
+        deportes.add(deporte.getNombre());
+
+
+    }
     public void getImagen(String id, ImageView view){
         StorageReference storageRef = storage.getReference();
         final ImageView view1 = view;
@@ -141,6 +163,53 @@ public class BaseDatos {
 
                     }
                     getNoticias(fragmentManager, deportes, new ArrayList<Noticia>(), 0);
+
+
+
+
+            }
+            @Override
+            public void onCancelled(DatabaseError firebaseError) {
+                //Log.e("The read failed: " ,firebaseError.getMessage());
+            }
+
+
+
+        });
+
+    }
+    public void getDeportes(final FragmentManager fragmentManager, FirebaseUser user ){
+
+
+        final FragmentManager fm = fragmentManager;
+        final ArrayList<Deporte> deportes = new ArrayList<Deporte>();
+        mDatabase.child("Deportes").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                Gson gson = new Gson();
+
+                for (DataSnapshot deportesSnapshot: snapshot.getChildren()) {
+
+                    deportes.add(deportesSnapshot.getValue(Deporte.class));
+
+                    //Log.e("Post",deportesSnapshot.getValue(String.class));
+
+                }
+                Fragment fragmento;
+                FragmentManager fragmentManager = fm;
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+
+                fragmento = new DeportesFragment();
+
+                Bundle arguments = new Bundle();
+                arguments.putString( "deportes" , gson.toJson(deportes));
+                fragmento.setArguments(arguments);
+                fragmentTransaction.replace(R.id.main_page, fragmento);
+                fragmentTransaction.addToBackStack(null);
+
+                fragmentTransaction.commit();
 
 
 

@@ -27,13 +27,11 @@ import java.util.ArrayList;
 public class NoticiasAdapter extends ArrayAdapter<Noticia>{
 
     Context contexto;
-    LayoutInflater mInflater;
     Gson gson = new Gson();
 
     public NoticiasAdapter(Context context, ArrayList<Noticia> noticias) {
         super(context, 0, noticias);
         this.contexto = context;
-        mInflater = LayoutInflater.from(contexto);
         Log.e("Probando lista", String.valueOf(noticias.size()));
     }
 
