@@ -17,6 +17,7 @@
     <string name="cerrar_session_menu_slice">Salir</string>
     <string name="login">Cerrar sesion</string>
     <string name="username">USERNAME</string>
+    <string name="perfil">Perfil</string>
 
     <!-- Registro activity -->
     <string name="registro_activity_str_nombre">Nombre</string>
@@ -25,5 +26,22 @@
     <string name="registro_activity_str_foto">Foto</string>
     <string name="registro_activity_str_agregar_foto">Agregar Foto</string>
     <string name="registro_activity_str_registrarse">Registrarse</string>
+
+    <!-- Perfil usuario fragment -->
+    <string name="perfil_usuario_str_guardar_cambios">Guardar Cambios</string>
+    <string name="perfil_usuario_str_editar_deportes">Editar Deportes</string>
+
+    <!-- Equipo fragment -->
+    <string name="equipo_miembros_">Miembros</string>
+    <string name="equipo_vacio">No tenes un equipo, pero podes crear uno!</string>
+    <string name="equipo_vacio_boton">Crear Equipo</string>
+
+    <!-- Crear Equipo fragment -->
+    <string name="crear_equipo_nombre_equipo">Nombre del equipo</string>
+    <string name="crear_equipo_descripcion_equipo">Descripcion del equipo</string>
+    <string name="crear_equipo_boton_crear">Crear equipo</string>
+    <string name="crear_equipo_foto">Foto</string>
+    <string name="crear_equipo_boton_foto">Agregar Foto</string>
+
 
 </resources>

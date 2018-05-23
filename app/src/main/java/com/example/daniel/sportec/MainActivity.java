@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         //LoginManager.getInstance().logOut();
 
-        Intent intent = new Intent(this, RegistroActivity.class);
+        Intent intent = new Intent(this, FacebookLoginActivity.class);
         startActivity(intent);
     }
 }

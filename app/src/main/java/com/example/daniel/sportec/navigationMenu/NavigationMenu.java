@@ -107,9 +107,9 @@ public class NavigationMenu extends AppCompatActivity
             getApplicationContext().startActivity(myIntent);
         }
 
-//        else if(id == R.id.administrar_voluntarios_ibtn_buscar_voluntarios) {
-//            //fm.beginTransaction().replace(R.id.main_page, new busqueda_voluntarios_Fragment()).commit();
-//        }
+        else if(id == R.id.activity_menu_slice_drawer_perfil_usuario) {
+            //fm.beginTransaction().replace(R.id.main_page, new busqueda_voluntarios_Fragment()).commit();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

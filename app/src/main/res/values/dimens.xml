@@ -23,6 +23,10 @@
     <dimen name="tamano_texto_registro_titulos">14sp</dimen>
     <dimen name="tamano_texto_registro_entrada">16sp</dimen>
 
+    <!-- Tamano textos Equipo -->
+    <dimen name="tamano_texto_equipo_titulo">24sp</dimen>
+    <dimen name="tamano_texto_equipo_miembro">18sp</dimen>
+
 
     <!-- Tamanos imagenes -->
     <dimen name="altura_noticias">100dp</dimen>

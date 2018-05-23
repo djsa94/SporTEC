@@ -13,8 +13,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.daniel.sportec.baseDatos.BaseDatos;
+import com.example.daniel.sportec.equipos.EquiposFragment;
 import com.example.daniel.sportec.modelos.Noticia;
 import com.example.daniel.sportec.R;
+import com.example.daniel.sportec.retos.RetosFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -63,7 +65,8 @@ public class NoticiasFragment extends Fragment  {
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-                    fragmento = new NoticiaDetalleFragment();
+                    //fragmento = new NoticiaDetalleFragment();
+                    fragmento = new RetosFragment();
                     Bundle bundle = new Bundle();
                     bundle.putString("noticia", gson.toJson(noticia));
                     fragmento.setArguments(bundle);
@@ -81,6 +84,7 @@ public class NoticiasFragment extends Fragment  {
             NoticiasAdapter adapter = new NoticiasAdapter(getActivity(), lista);
             ListView list = (ListView) view.findViewById(R.id.noticias_feed_layout_list_view);
             list.setAdapter(adapter);
+            ajustarAlturaListView(list,adapter);
         }
 
 
@@ -90,6 +94,27 @@ public class NoticiasFragment extends Fragment  {
 
 
         return view;
+    }
+
+    public static void ajustarAlturaListView (ListView listView, NoticiasAdapter adapter) {
+
+        //ListAdapter adapter = listView.getAdapter();
+
+        if (adapter == null) {
+            return;
+        }
+        ViewGroup vg = listView;
+        int totalHeight = 0;
+        for (int i = 0; i < adapter.getCount(); i++) {
+            View listItem = adapter.getView(i, null, vg);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams par = listView.getLayoutParams();
+        par.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));
+        listView.setLayoutParams(par);
+        listView.requestLayout();
     }
 
     @Override

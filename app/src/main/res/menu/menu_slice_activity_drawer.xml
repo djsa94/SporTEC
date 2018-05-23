@@ -12,6 +12,10 @@
             android:id="@+id/activity_menu_slice_drawer_noticias"
             android:icon="@drawable/list_mini"
             android:title="@string/noticias" />
+        <item
+            android:id="@+id/activity_menu_slice_drawer_perfil_usuario"
+            android:icon="@drawable/list_mini"
+            android:title="@string/perfil" />
     </group>
 
 </menu>
