@@ -1,4 +1,4 @@
-package com.example.daniel.sportec.Noticias;
+package com.example.daniel.sportec.noticias;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.daniel.sportec.BaseDatos.BaseDatos;
-import com.example.daniel.sportec.Objetos.Noticia;
+import com.example.daniel.sportec.baseDatos.BaseDatos;
+import com.example.daniel.sportec.modelos.Noticia;
 import com.example.daniel.sportec.R;
 import com.google.gson.Gson;
 

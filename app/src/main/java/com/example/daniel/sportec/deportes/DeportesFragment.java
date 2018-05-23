@@ -1,27 +1,17 @@
-package com.example.daniel.sportec.Deportes;
+package com.example.daniel.sportec.deportes;
 
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.daniel.sportec.BaseDatos.BaseDatos;
-import com.example.daniel.sportec.Noticias.NoticiaDetalleFragment;
-import com.example.daniel.sportec.Noticias.NoticiasAdapter;
-import com.example.daniel.sportec.Noticias.NoticiasFragment;
-import com.example.daniel.sportec.Objetos.Deporte;
-import com.example.daniel.sportec.Objetos.Noticia;
+import com.example.daniel.sportec.baseDatos.BaseDatos;
+import com.example.daniel.sportec.modelos.Deporte;
 import com.example.daniel.sportec.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;

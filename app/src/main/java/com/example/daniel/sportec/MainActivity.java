@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.daniel.sportec.BaseDatos.BaseDatos;
-import com.example.daniel.sportec.FacebookLogin.FacebookLoginActivity;
-import com.example.daniel.sportec.NavigationMenu.NavigationMenu;
-import com.facebook.login.LoginManager;
+import com.example.daniel.sportec.login.FacebookLoginActivity;
+import com.example.daniel.sportec.registro.RegistroActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         //LoginManager.getInstance().logOut();
 
-        Intent intent = new Intent(this, FacebookLoginActivity.class);
+        Intent intent = new Intent(this, RegistroActivity.class);
         startActivity(intent);
     }
 }

@@ -1,20 +1,15 @@
-package com.example.daniel.sportec.FacebookLogin;
-import com.example.daniel.sportec.NavigationMenu.NavigationMenu;
+package com.example.daniel.sportec.login;
+import com.example.daniel.sportec.navigationMenu.NavigationMenu;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.Profile;
 import com.facebook.login.LoginResult;
-import com.facebook.login.LoginManager;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;

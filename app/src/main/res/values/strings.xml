@@ -18,4 +18,12 @@
     <string name="login">Cerrar sesion</string>
     <string name="username">USERNAME</string>
 
+    <!-- Registro activity -->
+    <string name="registro_activity_str_nombre">Nombre</string>
+    <string name="registro_activity_str_apellido">Apellido</string>
+    <string name="registro_activity_str_email">Email</string>
+    <string name="registro_activity_str_foto">Foto</string>
+    <string name="registro_activity_str_agregar_foto">Agregar Foto</string>
+    <string name="registro_activity_str_registrarse">Registrarse</string>
+
 </resources>

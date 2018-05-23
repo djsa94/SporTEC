@@ -1,4 +1,4 @@
-package com.example.daniel.sportec.Noticias;
+package com.example.daniel.sportec.noticias;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,14 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
-import com.example.daniel.sportec.BaseDatos.BaseDatos;
-import com.example.daniel.sportec.Objetos.Noticia;
+import com.example.daniel.sportec.baseDatos.BaseDatos;
+import com.example.daniel.sportec.modelos.Noticia;
 import com.example.daniel.sportec.R;
 import com.google.gson.Gson;
 

@@ -1,6 +1,5 @@
-package com.example.daniel.sportec.NavigationMenu;
+package com.example.daniel.sportec.navigationMenu;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -15,15 +14,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.daniel.sportec.BaseDatos.BaseDatos;
-import com.example.daniel.sportec.FacebookLogin.FacebookLoginActivity;
-import com.example.daniel.sportec.Noticias.NoticiasFragment;
-import com.example.daniel.sportec.Objetos.Noticia;
+import com.example.daniel.sportec.baseDatos.BaseDatos;
+import com.example.daniel.sportec.login.FacebookLoginActivity;
 import com.example.daniel.sportec.R;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.ArrayList;
 
 public class NavigationMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

@@ -1,7 +1,6 @@
-package com.example.daniel.sportec.Deportes;
+package com.example.daniel.sportec.deportes;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.daniel.sportec.BaseDatos.BaseDatos;
-import com.example.daniel.sportec.Objetos.Deporte;
+import com.example.daniel.sportec.baseDatos.BaseDatos;
+import com.example.daniel.sportec.modelos.Deporte;
 import com.example.daniel.sportec.R;
 
 import java.util.ArrayList;

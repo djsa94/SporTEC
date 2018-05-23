@@ -33,10 +33,10 @@
         </activity>
 
 
-        <activity android:name=".FacebookLogin.FacebookLoginActivity" android:theme="@style/AppTheme">
+        <activity android:name=".login.FacebookLoginActivity" android:theme="@style/AppTheme">
 
         </activity>
-        <activity android:name=".NavigationMenu.NavigationMenu"
+        <activity android:name=".navigationMenu.NavigationMenu"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>

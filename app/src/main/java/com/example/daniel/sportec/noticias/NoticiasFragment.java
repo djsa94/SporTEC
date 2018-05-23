@@ -1,33 +1,25 @@
-package com.example.daniel.sportec.Noticias;
+package com.example.daniel.sportec.noticias;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.daniel.sportec.BaseDatos.BaseDatos;
-import com.example.daniel.sportec.Deportes.DeportesFragment;
-import com.example.daniel.sportec.FacebookLogin.FacebookLoginActivity;
-import com.example.daniel.sportec.Objetos.Noticia;
+import com.example.daniel.sportec.baseDatos.BaseDatos;
+import com.example.daniel.sportec.modelos.Noticia;
 import com.example.daniel.sportec.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class NoticiasFragment extends Fragment  {
     ArrayList<Noticia> lista;

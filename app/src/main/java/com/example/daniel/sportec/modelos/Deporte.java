@@ -1,4 +1,4 @@
-package com.example.daniel.sportec.Objetos;
+package com.example.daniel.sportec.modelos;
 
 public class Deporte {
     private String Nombre;

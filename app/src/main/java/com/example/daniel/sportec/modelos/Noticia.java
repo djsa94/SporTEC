@@ -1,6 +1,4 @@
-package com.example.daniel.sportec.Objetos;
-
-import android.media.Image;
+package com.example.daniel.sportec.modelos;
 
 
 public class Noticia {
