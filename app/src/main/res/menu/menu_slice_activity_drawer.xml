@@ -16,6 +16,10 @@
             android:id="@+id/activity_menu_slice_drawer_perfil_usuario"
             android:icon="@drawable/list_mini"
             android:title="@string/perfil" />
+        <item
+            android:id="@+id/activity_menu_slice_drawer_deportes"
+            android:icon="@drawable/list_mini"
+            android:title="@string/deportes" />
     </group>
 
 </menu>

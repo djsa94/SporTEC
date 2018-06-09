@@ -2,6 +2,7 @@ package com.example.daniel.sportec.navigationMenu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,10 +16,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.daniel.sportec.baseDatos.BaseDatos;
+import com.example.daniel.sportec.baseDatos.SportecApi;
+import com.example.daniel.sportec.deportes.DeportesFragment;
 import com.example.daniel.sportec.login.FacebookLoginActivity;
 import com.example.daniel.sportec.R;
+import com.example.daniel.sportec.modelos.User;
+import com.example.daniel.sportec.noticias.NoticiasFragment;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
 
 public class NavigationMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,13 +48,19 @@ public class NavigationMenu extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View hView =  navigationView.getHeaderView(0);
         TextView username = (TextView) hView.findViewById(R.id.menu_slice_nav_header_user);
-        username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+//        username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
         navigationView.setNavigationItemSelectedListener(this);
 
         ;
 
-        db.getPreferencias(getSupportFragmentManager(), FirebaseAuth.getInstance().getCurrentUser());
+        //db.getPreferencias(getSupportFragmentManager(), FirebaseAuth.getInstance().getCurrentUser());
+
+        Gson gson = new Gson();
+        Bundle bundle = getIntent().getExtras();
+        Fragment fragmentoNuevo = new NoticiasFragment();
+        fragmentoNuevo.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_page, fragmentoNuevo).commit();
     }
 
     @Override
@@ -109,6 +121,11 @@ public class NavigationMenu extends AppCompatActivity
 
         else if(id == R.id.activity_menu_slice_drawer_perfil_usuario) {
             //fm.beginTransaction().replace(R.id.main_page, new busqueda_voluntarios_Fragment()).commit();
+        }else if(id == R.id.activity_menu_slice_drawer_deportes){
+            Gson gson = new Gson();
+            User user = gson.fromJson(getIntent().getExtras().getString("user"), User.class);
+            SportecApi api = new SportecApi(getApplicationContext());
+            api.getDeportes(user, getSupportFragmentManager());
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

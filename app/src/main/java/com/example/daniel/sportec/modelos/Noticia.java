@@ -2,51 +2,51 @@ package com.example.daniel.sportec.modelos;
 
 
 public class Noticia {
-    private String Titulo;
-    private String Contenido;
-    private String Imagen;
-    private String Fecha;
+    private String titulo;
+    private String contenido;
+    private String imagen;
+    private String fecha;
 
     public Noticia() {
 
     }
 
     public Noticia(String titulo, String contenido, String imagen, String fecha) {
-        this.Titulo = titulo;
-        this.Contenido = contenido;
-        this.Imagen = imagen;
-        this.Fecha = fecha;
+        this.titulo = titulo;
+        this.contenido = contenido;
+        this.imagen = imagen;
+        this.fecha = fecha;
     }
 
     public String getTitulo() {
-        return Titulo;
+        return titulo;
     }
 
     public void setTitulo(String titulo) {
-        this.Titulo = titulo;
+        this.titulo = titulo;
     }
 
     public String getContenido() {
-        return Contenido;
+        return contenido;
     }
 
     public void setContenido(String contenido) {
-        this.Contenido = contenido;
+        this.contenido = contenido;
     }
 
     public String getImagen() {
-        return Imagen;
+        return imagen;
     }
 
     public void setImagen(String imagen) {
-        this.Imagen = imagen;
+        this.imagen = imagen;
     }
 
     public String getFecha() {
-        return Fecha;
+        return fecha;
     }
 
     public void setFecha(String fecha) {
-        this.Fecha = fecha;
+        this.fecha = fecha;
     }
 }

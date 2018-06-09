@@ -41,7 +41,7 @@ public class MiembrosEquipoAdapter extends ArrayAdapter<User>{
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.equipo_fragment_miembro_layout, parent, false);
         }
         TextView nombre = (TextView) convertView.findViewById(R.id.equipo_fragment_miembro_nombre);
-        nombre.setText(getItem(position).getNombre() + " " + getItem(position).getApellido());
+        nombre.setText(getItem(position).getName() + " " + getItem(position).getApellido());
 
 
         return convertView;

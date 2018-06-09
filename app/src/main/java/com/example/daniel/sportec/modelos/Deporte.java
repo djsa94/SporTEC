@@ -1,31 +1,42 @@
 package com.example.daniel.sportec.modelos;
 
-public class Deporte {
-    private String Nombre;
-    private String Imagen;
+import java.util.ArrayList;
 
-    public Deporte(String nombre, String imagen) {
-        this.Nombre = nombre;
-        this.Imagen = imagen;
+public class Deporte {
+    private String name;
+    private ArrayList<String> news;
+    private String _id;
+
+    public Deporte(String name, ArrayList<String> news) {
+        this.name = name;
+        this.news = news;
     }
 
     public Deporte() {
     }
 
-    public String getNombre() {
-
-        return Nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        Nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getImagen() {
-        return Imagen;
+    public ArrayList<String> getNews() {
+        return news;
     }
 
-    public void setImagen(String Imagen) {
-        this.Imagen = Imagen;
+    public void setNews(ArrayList<String> news) {
+        this.news = news;
+    }
+
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 }

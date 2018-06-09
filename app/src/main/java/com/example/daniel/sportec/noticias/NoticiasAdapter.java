@@ -47,10 +47,10 @@ public class NoticiasAdapter extends ArrayAdapter<Noticia>{
         TextView textView = (TextView) convertView.findViewById(R.id.noticias_feed_layout_regular_titulo);
         textView.setText(titulo.subSequence(0,titulo.length()));
         TextView textViewfecha = (TextView) convertView.findViewById(R.id.noticias_feed_layout_regular_fecha);
-        textViewfecha.setText(noticia.getFecha().subSequence(0,noticia.getFecha().length()));
+        //textViewfecha.setText(noticia.getFecha().subSequence(0,noticia.getFecha().length()));
         ImageView imagen = (ImageView) convertView.findViewById(R.id.noticias_feed_layout_regular_image_view);
         BaseDatos db = new BaseDatos();
-        db.getImagen(noticia.getImagen(), imagen);
+//        db.getImagen(noticia.getImagen(), imagen);
 
 
         convertView.setOnClickListener(new View.OnClickListener() {

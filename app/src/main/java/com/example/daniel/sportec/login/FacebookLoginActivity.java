@@ -1,5 +1,7 @@
 package com.example.daniel.sportec.login;
+import com.example.daniel.sportec.baseDatos.SportecApi;
 import com.example.daniel.sportec.navigationMenu.NavigationMenu;
+import com.example.daniel.sportec.registro.RegistroActivity;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -44,41 +46,36 @@ public class FacebookLoginActivity extends AppCompatActivity{
 
         setTheme(R.style.AppTheme);
 
-        //LoginManager.getInstance().logOut();
-        //Inicializa Firebase
-        mAuth = FirebaseAuth.getInstance();
-        //Callback Manager
-        callbackManager = CallbackManager.Factory.create();
-        //Boton de login creado y especifica permisos
-        loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.setReadPermissions(Arrays.asList(
-                "public_profile", "email", "user_birthday", "user_friends"));
-        //Hace callback
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                handleFacebookAccessToken(loginResult.getAccessToken());
-
-
-
-
-            }
-
-
-
-            @Override
-            public void onCancel() {
-                // App code
-            }
-
-            @Override
-            public void onError(FacebookException exception) {
-                // App code
-            }
-        });
+//        //LoginManager.getInstance().logOut();
+//        //Inicializa Firebase
+//        mAuth = FirebaseAuth.getInstance();
+//        //Callback Manager
+//        callbackManager = CallbackManager.Factory.create();
+//        //Boton de login creado y especifica permisos
+//        loginButton = (LoginButton) findViewById(R.id.login_button);
+//        loginButton.setReadPermissions(Arrays.asList(
+//                "public_profile", "email", "user_birthday", "user_friends"));
+//        //Hace callback
+//        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                handleFacebookAccessToken(loginResult.getAccessToken());
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                // App code
+//            }
+//
+//            @Override
+//            public void onError(FacebookException exception) {
+//                // App code
+//            }
+//        });
 
 
         Button botonIngresar = (Button) findViewById(R.id.facebook_login_button_log_in);
+        Button botonRegistrar = (Button) findViewById(R.id.facebook_login_button_register);
         final TextView email = (TextView) findViewById(R.id.facebook_login_text_view_username);
         final TextView pass = (TextView) findViewById(R.id.facebook_login_text_view_password);
 
@@ -88,6 +85,13 @@ public class FacebookLoginActivity extends AppCompatActivity{
                 crearUserCorreo(String.valueOf(email.getText()), String.valueOf(pass.getText()));
             }
 
+        });
+        botonRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), RegistroActivity.class);
+                startActivity(intent);
+            }
         });
 
 

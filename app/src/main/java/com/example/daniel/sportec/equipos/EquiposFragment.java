@@ -50,16 +50,16 @@ public class EquiposFragment extends Fragment {
 
 
 
-        lista = new ArrayList<User>();lista = new ArrayList<User>();
-        lista.add(new User("Daniel","Sanabria","djsa94"));
-        lista.add(new User("David","Sanabria","dasanabria"));
-        lista.add(new User("Andres","Sanabria","ansaarg"));
-        lista.add(new User("German","Sanabria","gesanabria"));
-        lista.add(new User("Meli","Araya","meli2159"));
-        lista.add(new User("Megan","Wood","mothy"));
-        lista.add(new User("Rodney","Wood","whiteTuna"));
-        lista.add(new User("Anette","Wood","auntnette"));
-        lista.add(new User("Brittany","Higgins","bratney"));
+//        lista = new ArrayList<User>();lista = new ArrayList<User>();
+//        lista.add(new User("Daniel","Sanabria","djsa94"));
+//        lista.add(new User("David","Sanabria","dasanabria"));
+//        lista.add(new User("Andres","Sanabria","ansaarg"));
+//        lista.add(new User("German","Sanabria","gesanabria"));
+//        lista.add(new User("Meli","Araya","meli2159"));
+//        lista.add(new User("Megan","Wood","mothy"));
+//        lista.add(new User("Rodney","Wood","whiteTuna"));
+//        lista.add(new User("Anette","Wood","auntnette"));
+//        lista.add(new User("Brittany","Higgins","bratney"));
 
 
 

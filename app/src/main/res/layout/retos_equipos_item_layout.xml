@@ -2,5 +2,20 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/retos_equipos_item_nombre_equipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"/>
+        <TextView
+            android:id="@+id/retos_equipos_item_puntos_equipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"/>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

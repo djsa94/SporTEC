@@ -36,6 +36,12 @@
         <activity android:name=".login.FacebookLoginActivity" android:theme="@style/AppTheme">
 
         </activity>
+        <activity android:name=".login.LoginActivity" android:theme="@style/AppTheme">
+
+        </activity>
+        <activity android:name=".registro.RegistroActivity" android:theme="@style/AppTheme">
+
+        </activity>
         <activity android:name=".navigationMenu.NavigationMenu"
             android:theme="@style/AppTheme.NoActionBar">
 

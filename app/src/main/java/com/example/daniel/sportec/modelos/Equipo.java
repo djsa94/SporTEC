@@ -7,6 +7,16 @@ public class Equipo {
     String nombre;
     ArrayList<String> integrantes;
     ArrayList<Reto> retos;
+    int puntosTotales;
+
+    public Equipo() {
+    }
+
+    public Equipo(String deporte, String nombre) {
+        this.deporte = deporte;
+        this.nombre = nombre;
+        this.puntosTotales = 0;
+    }
 
     public String getDeporte() {
         return deporte;
@@ -38,5 +48,13 @@ public class Equipo {
 
     public void setRetos(ArrayList<Reto> retos) {
         this.retos = retos;
+    }
+
+    public int getPuntosTotales() {
+        return puntosTotales;
+    }
+
+    public void setPuntosTotales(int puntosTotales) {
+        this.puntosTotales = puntosTotales;
     }
 }

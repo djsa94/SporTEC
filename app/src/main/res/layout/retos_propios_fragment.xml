@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HOLI"
-        tools:layout_editor_absoluteX="123dp"
-        tools:layout_editor_absoluteY="108dp" />
+    <ListView
+        android:id="@+id/retos_propios_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
 </android.support.constraint.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.daniel.sportec.baseDatos.BaseDatos;
+import com.example.daniel.sportec.baseDatos.SportecApi;
 import com.example.daniel.sportec.equipos.EquiposFragment;
 import com.example.daniel.sportec.modelos.Noticia;
 import com.example.daniel.sportec.R;
+import com.example.daniel.sportec.modelos.User;
 import com.example.daniel.sportec.retos.RetosFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
@@ -27,10 +30,10 @@ public class NoticiasFragment extends Fragment  {
     ArrayList<Noticia> lista;
     Gson gson = new Gson();
     BaseDatos db = new BaseDatos();
+    SportecApi api;
 
     public static NoticiasFragment newInstance() {
         NoticiasFragment fragmentoNoticias = new NoticiasFragment();
-
 
         return fragmentoNoticias;
     }
@@ -39,14 +42,17 @@ public class NoticiasFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.noticias_feed_layout, container, false);
-
+        api = new SportecApi(getContext());
+        User user = gson.fromJson(getArguments().getString("user"), User.class);
         TypeToken<ArrayList<Noticia>> token = new TypeToken<ArrayList<Noticia>>() {};
-        lista = gson.fromJson(getArguments().getString("Noticias"), token.getType());
+        lista = gson.fromJson(getArguments().getString("noticias"), token.getType());
 
 
-        if(lista.isEmpty()){
-            db.getDeportes(getFragmentManager(), FirebaseAuth.getInstance().getCurrentUser());
+        if(user.getSports().isEmpty()){
+            //db.getDeportes(getFragmentManager(), FirebaseAuth.getInstance().getCurrentUser());
+            api.getDeportes(user, getFragmentManager());
         }else {
+            Log.e("TAGNOTICIASLISTALLENA", user.getSports().get(0));
             ImageView imagen = (ImageView) view.findViewById(R.id.noticias_feed_layout_featured_image_view);
             TextView titulo = (TextView) view.findViewById((R.id.noticias_feed_layout_featured_titulo));
 
@@ -78,7 +84,7 @@ public class NoticiasFragment extends Fragment  {
             });
 
 
-            db.getImagen(noticia.getImagen(), imagen);
+            //db.getImagen(noticia.getImagen(), imagen);
 
             lista.remove(0);
             NoticiasAdapter adapter = new NoticiasAdapter(getActivity(), lista);

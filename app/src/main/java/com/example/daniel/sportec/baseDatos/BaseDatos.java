@@ -53,7 +53,7 @@ public class BaseDatos {
 
     }
     public void agregarPreferencias(Deporte deporte){
-        deportes.add(deporte.getNombre());
+        //deportes.add(deporte.getNombre());
 
 
     }
