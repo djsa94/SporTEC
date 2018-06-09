@@ -15,15 +15,9 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.facebook_login_layout);
-
         setTheme(R.style.AppTheme);
-
-
-
-
         Button botonIngresar = (Button) findViewById(R.id.facebook_login_button_log_in);
         Button botonRegistrar = (Button) findViewById(R.id.facebook_login_button_register);
         final TextView email = (TextView) findViewById(R.id.facebook_login_text_view_username);
@@ -44,7 +38,5 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 }

@@ -13,23 +13,19 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.daniel.sportec.baseDatos.BaseDatos;
-import com.example.daniel.sportec.baseDatos.SportecApi;
-import com.example.daniel.sportec.equipos.EquiposFragment;
-import com.example.daniel.sportec.modelos.Noticia;
 import com.example.daniel.sportec.R;
+import com.example.daniel.sportec.baseDatos.SportecApi;
+import com.example.daniel.sportec.modelos.Noticia;
 import com.example.daniel.sportec.modelos.User;
 import com.example.daniel.sportec.retos.RetosFragment;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
-public class NoticiasFragment extends Fragment  {
+public class NoticiasFragment extends Fragment {
     ArrayList<Noticia> lista;
     Gson gson = new Gson();
-    BaseDatos db = new BaseDatos();
     SportecApi api;
 
     public static NoticiasFragment newInstance() {
@@ -41,17 +37,17 @@ public class NoticiasFragment extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.noticias_feed_layout, container, false);
+        View view = inflater.inflate(R.layout.noticias_feed_layout, container, false);
         api = new SportecApi(getContext());
         User user = gson.fromJson(getArguments().getString("user"), User.class);
-        TypeToken<ArrayList<Noticia>> token = new TypeToken<ArrayList<Noticia>>() {};
+        TypeToken<ArrayList<Noticia>> token = new TypeToken<ArrayList<Noticia>>() {
+        };
         lista = gson.fromJson(getArguments().getString("noticias"), token.getType());
 
-
-        if(user.getSports().isEmpty()){
+        if (user.getSports().isEmpty()) {
             //db.getDeportes(getFragmentManager(), FirebaseAuth.getInstance().getCurrentUser());
             api.getDeportes(user, getFragmentManager());
-        }else {
+        } else {
             Log.e("TAGNOTICIASLISTALLENA", user.getSports().get(0));
             ImageView imagen = (ImageView) view.findViewById(R.id.noticias_feed_layout_featured_image_view);
             TextView titulo = (TextView) view.findViewById((R.id.noticias_feed_layout_featured_titulo));
@@ -82,30 +78,17 @@ public class NoticiasFragment extends Fragment  {
                     fragmentTransaction.commit();
                 }
             });
-
-
-            //db.getImagen(noticia.getImagen(), imagen);
-
             lista.remove(0);
             NoticiasAdapter adapter = new NoticiasAdapter(getActivity(), lista);
             ListView list = (ListView) view.findViewById(R.id.noticias_feed_layout_list_view);
             list.setAdapter(adapter);
-            ajustarAlturaListView(list,adapter);
+            ajustarAlturaListView(list, adapter);
         }
-
-
-
-
-
-
-
         return view;
     }
 
-    public static void ajustarAlturaListView (ListView listView, NoticiasAdapter adapter) {
-
+    public static void ajustarAlturaListView(ListView listView, NoticiasAdapter adapter) {
         //ListAdapter adapter = listView.getAdapter();
-
         if (adapter == null) {
             return;
         }
@@ -116,7 +99,6 @@ public class NoticiasFragment extends Fragment  {
             listItem.measure(0, 0);
             totalHeight += listItem.getMeasuredHeight();
         }
-
         ViewGroup.LayoutParams par = listView.getLayoutParams();
         par.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));
         listView.setLayoutParams(par);
@@ -128,9 +110,6 @@ public class NoticiasFragment extends Fragment  {
         super.onCreate(savedInstanceState);
 
     }
-
-
-
 
 
 }

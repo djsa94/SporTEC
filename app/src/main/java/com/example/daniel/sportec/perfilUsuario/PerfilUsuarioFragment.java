@@ -11,17 +11,15 @@ import android.widget.EditText;
 import com.example.daniel.sportec.R;
 
 public class PerfilUsuarioFragment extends Fragment {
-
     public static PerfilUsuarioFragment newInstance() {
         PerfilUsuarioFragment fragmentoPerfil = new PerfilUsuarioFragment();
-
-
         return fragmentoPerfil;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.perfil_usuario_layout, container, false);
+        View view = inflater.inflate(R.layout.perfil_usuario_layout, container, false);
 
         EditText nombre = (EditText) view.findViewById(R.id.perfil_usuario_entrada_nombre);
         EditText apellido = (EditText) view.findViewById(R.id.perfil_usuario_entrada_apellido);
@@ -51,15 +49,6 @@ public class PerfilUsuarioFragment extends Fragment {
 
             }
         });
-
-
-
-
-
-
-
-
-
         return view;
     }
 
